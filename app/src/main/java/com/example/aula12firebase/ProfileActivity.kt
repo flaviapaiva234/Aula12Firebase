@@ -8,11 +8,15 @@ import android.os.Bundle
 import android.util.Log
 import com.example.aula12firebase.databinding.ActivityProfileBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import java.lang.Exception
 
 class ProfileActivity : AppCompatActivity() {
+
+    private var mGoogleSignInClient: GoogleSignInClient? = null
 
     private lateinit var binding: ActivityProfileBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,82 +29,42 @@ class ProfileActivity : AppCompatActivity() {
 
         val acct = GoogleSignIn.getLastSignedInAccount(this)  //verificar essa conta
 
-        if (acct != null){
+        if (acct != null) {
             name.text = acct.displayName
             email2.text = acct.email
 
             binding.btnGoToSignIn.setOnClickListener {
 
                 FirebaseAuth.getInstance().signOut()
-                val intent = Intent(applicationContext, MainActivity::class.java)  // intensão de sair de conta, vai voltat para a MainActyvity
+                val intent = Intent(
+                    applicationContext,
+                    MainActivity::class.java
+                )  // intensão de sair de conta, vai voltat para a MainActyvity
                 startActivity(intent)
             }
 
             binding.btnErro.setOnClickListener {
 
-               throw Exception("Deu erro")
+                throw Exception("Deu erro")
             }
 
             binding.btnLogOut.setOnClickListener {
 
+                mGoogleSignInClient?.signOut()
                 FirebaseAuth.getInstance().signOut()
-                val intent = Intent(applicationContext, MainActivity::class.java)  // intensão de sair de conta, vai voltat para a MainActyvity
+                val intent = Intent(
+                    applicationContext,
+                    MainActivity::class.java
+                )  // intensão de sair de conta, vai voltat para a MainActyvity
                 startActivity(intent)
             }
 
-//            private fun deleteUser() {
-//
-//
-//                binding.btnLogOut.setOnClickListener {
-//                    // [START delete_user]
-//                    val user = mAuth?.currentUser!!
-//
-//                    user.delete()
-//                        .addOnCompleteListener { task ->
-//                            if (task.isSuccessful) {
-//                                Log.d(ContentValues.TAG, "User account deleted.")
-//                            }
-//                        }
-//                    // [END delete_user]
-//                }
-//            }
+            val googleSignInOp = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+            mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOp)
 
-
-
-
-//            binding.btnLogOut.setOnClickListener {
-//
-//                FirebaseAuth.getInstance().signOut()
-//               // val intent = Intent(applicationContext, MainActivity::class.java)  // intensão de sair de conta, vai voltat para a MainActyvity
-//
-//                val user = Firebase.auth.currentUser!!
-//
-//                user.delete()
-//                    .addOnCompleteListener { task ->
-//                        if (task.isSuccessful) {
-//                            Log.d(TAG, "User account deleted.")
-//                        }
-//                    }
-//                startActivity(intent)
-//            }
-//            deleteUser()
         }
-
     }
-
-//    private fun deleteUser() {
-//
-//        binding.btnLogOut.setOnClickListener {
-//        // [START delete_user]
-//        val user = Firebase.mAuth.currentUser!!
-//
-//        user.delete()
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    Log.d(TAG, "User account deleted.")
-//                }
-//            }
-//        // [END delete_user]
-//    }
-//    }
 }
