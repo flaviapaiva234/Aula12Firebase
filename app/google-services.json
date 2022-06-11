@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "272296212971",
+    "project_id": "aula12firebase-d7b60",
+    "storage_bucket": "aula12firebase-d7b60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272296212971:android:ae66497a969f5124d681ae",
+        "android_client_info": {
+          "package_name": "com.example.aula12firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272296212971-dphe7ck8qeqobutrk2p9gd7kmm58aq8t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aula12firebase",
+            "certificate_hash": "4326954bff708dfce066b076ce929cc3da983f2b"
+          }
+        },
+        {
+          "client_id": "272296212971-vs35an13i74id98lvaoaglcu56orpcoj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVQR_IWm3PpGOJT1gSXjSQE3IoIaFplWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272296212971-vs35an13i74id98lvaoaglcu56orpcoj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
